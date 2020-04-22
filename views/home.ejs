@@ -1,0 +1,26 @@
+<%- include('partials/header'); -%>
+
+<br>
+<table>
+    <tr>
+      <th>Student Name</th>
+      <th>Roll No.</th>
+      <th>Branch</th>
+      <th>Degree</th>
+      <!-- <th>Status</th> -->
+    </tr>
+
+    <% students.forEach(function(e){ %>
+        <tr>
+            <td><%= e.sname %></td>
+            <td><%= e.sroll %></td>
+            <td><%= e.sbranch %></td>
+            <td><%= e.sdegree %></td>
+        </tr>
+    <%});%>
+    
+
+  </table>
+
+
+<%- include('partials/footer'); -%>
