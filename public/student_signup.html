@@ -1,8 +1,16 @@
-<%- include('partials/header1'); -%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles1.css">
+    
+</head>
 
 <body>
     <div class="heading">
-        <p class="head-text">STUDENT</p>
+        <p class="head-text">SIGN UP</p>
     </div>
 
 <!-- </body>
@@ -12,13 +20,13 @@
     <div class="form-group row">
       <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10 mb-3 md-form">
-        <input type="text" class="form-control div-size" name='sname' id="inputName3" required>
+        <input type="text" class="form-control div-size" name='sname' id="inputName3" required pattern="^[A-Za-z]+[\s]+[A-Za-z]+[\s]*[A-Za-z]*$" min="4" max="20">
 
         <div class="valid-feedback">
           Looks good!
         </div>
         <div class="invalid-feedback">
-          please provide your name!
+          name should contains only letters
         </div>
       </div>
 
@@ -28,13 +36,13 @@
     <div class="form-group row">
       <label for="inputRoll3" class="col-sm-2 col-form-label">Roll Number</label>
       <div class="col-sm-10 mb-3 md-form">
-        <input type="text" class="form-control div-size" name='sroll' id="inputRoll3" required>
+        <input type="text" class="form-control div-size" name='sroll' id="inputRoll3" placeholder="e.g. 17CS01067" required pattern="^[0-9A-Za-z]+$" min="7" max="10">
 
         <div class="valid-feedback">
           Looks good!
         </div>
         <div class="invalid-feedback">
-          please provide your roll Number!
+          please provide valid roll Number!
         </div>
       </div>
       </div>
@@ -42,14 +50,25 @@
 
     <div class="form-group row">
       <label for="inputRoll31" class="col-sm-2 col-form-label">Email-id</label>
-      <div class="col-sm-10 mb-3 md-form">
-        <input type="email" class="form-control div-size" name='email' id="inputRoll31" required>
-
+      <div class="col-sm-10 mb-3 md-form" style="display: inline-block;">
+        <input type="email" class="form-control div-size" name='email' id="inputRoll31" placeholder="e.g xyz@iitbbs.ac.in" required>
         <div class="valid-feedback">
           Looks good!
         </div>
         <div class="invalid-feedback">
-          please provide your email-id!
+          please provide valid email-id!
+        </div>
+      </div>
+
+      <label for="pswd" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10 mb-3 md-form" style="display: inline-block;">
+        <input type="password" class="form-control div-size" name='pswd' id="pswd" placeholder="e.g. Sneha@1234" required pattern="^[A-Z][A-Za-z0-9]+@*[A-Za-z0-9]+$" min="8" max="15">
+        
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          ist letter should be capital, rest small/capital letter and only @. minLen = 8, maxLen = 15
         </div>
       </div>
 
@@ -110,19 +129,26 @@
 
       <br>
       
-    <div class="form-group row" style="display: inline-block;">
+    <div class="form-group row">
       <div class="col-sm-10">
-        <button type="submit" class="btn btn-primary" style="display: inline-block;">Submit</button>
+        <button type="submit" class="btn btn-primary" name="bt" value="signup">Sign Up</button>
       </div>
     </div>
 </form>
 
-<form action="/AlreayExist" method="POST" style="display: inline-block;">
-  <div>
-    <button type="submit" class="btn btn-primary" style="margin-left: 50px; display: inline-block;">Already submitted</button>
+<!-- <form action="/login" method="POST"> -->
+  <div class="format">
+    <a href="/login" class="btn btn-primary" style="margin-right: 8em;" style="color: white;" name="bt" value="login">Log In</a>
   </div>
-  
-</form>
+<!-- </form> -->
 
 
-<%- include('partials/footer1'); -%>
+
+<script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
