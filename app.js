@@ -164,6 +164,26 @@ app.post("/",function(req, res){
  
 });
 
+app.get("/login", function(req,res){
+    res.render("student_signin");
+});
+
+
+app.post("/login", function(req, res){
+    Student.find({email:req.body.email}, function(err, record){
+        if(!err){
+            if(record.length != 0){
+                res.redirect("/home");
+            }else{
+                res.redirect("/");
+            }
+        }else{
+            res.status(404).send("INTERNAL ERROR!");
+            console.log("login error");
+        }
+    });
+});
+
 app.get("/company", function(req, res){
     res.render('company');
 });
