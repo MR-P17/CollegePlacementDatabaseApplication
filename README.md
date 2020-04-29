@@ -14,12 +14,10 @@ For using the repo follow below steps:
 
 
 routes available:
-# admin part
-1. "/company" for filling details of company by CDC.
-2. "/offer" for filling details of offer by CDC.
-3. "/interview" for filling details of interview so far by CDC.
+# admin part.
+Not accessible to all
 
 # student part
-4. GUI is provided for students to fill their on details when they access the server.
+5. GUI is provided for students to fill their on details when they access the server.
 
 // see the app.js file for more understanding.
