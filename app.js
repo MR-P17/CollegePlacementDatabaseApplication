@@ -4,8 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const mongoose = require('mongoose');
-var bcrypt = require("bcrypt");
-nev = require('email-verification')(mongoose);
+// var bcrypt = require("bcrypt");
+// nev = require('email-verification')(mongoose);
 const port = process.env.PORT;
 const saltround = 8;
 
@@ -70,21 +70,22 @@ const studentSchema = {
 const Student = mongoose.model("Student", studentSchema), tempStudent = mongoose.model("tempStudent", studentSchema);
 const User = require('./user/userModel');
 
+
 /*
 // sync version of hashing function
 var myHasher = function(password, tempUserData, insertTempUser, callback) {
     var hash = bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
     return insertTempUser(hash, tempUserData, callback);
 };
-*/
+
 // async version of hashing function
-myHasher = function(password, tempUserData, insertTempUser, callback) {
-    bcrypt.genSalt(saltround, function(err, salt) {
-        bcrypt.hash(password, salt, function(err, hash) {
-            return insertTempUser(hash, tempUserData, callback);
-        });
-    });
-};
+// myHasher = function(password, tempUserData, insertTempUser, callback) {
+//     bcrypt.genSalt(saltround, function(err, salt) {
+//         bcrypt.hash(password, salt, function(err, hash) {
+//             return insertTempUser(hash, tempUserData, callback);
+//         });
+//     });
+// };
 
 
 
@@ -133,7 +134,7 @@ nev.configure({
       },
     hashingFunction: myHasher,
 
-    /* mongo-stuff */
+    // mongo stuff
     persistentUserModel: User,
     // tempUserModel: null,
     // tempUserCollection: 'temporary_users',
@@ -161,6 +162,7 @@ nev.generateTempUserModel(User, function(err, tempUserModel) {
 
     console.log('generated temp user model: ' + (typeof tempUserModel === 'function'));
 });
+*/
 
 
 // main logic starts here
@@ -169,8 +171,9 @@ app.get("/home", function(res,res){
     Student.find({}, function(err, studentRecords){
         if(!err){
             res.render("home",{students:studentRecords});
-            // res.redirect("");
+
         }else{
+            res.status(404).send("INTERNAL ERROR!");
             console.log("No data present!");
         }
     });
@@ -181,45 +184,60 @@ app.get("/", function(req, res){
     res.sendFile(__dirname + '/public/student_signup.html');
 });
 
-app.get("/login", function(req, res){
-    res.sendFile(__dirname + '/public/student_signin.html');
-});
+// app.get("/login", function(req, res){
+//     res.sendFile(__dirname + '/public/student_signin.html');
+// });
 
 app.post("/",function(req, res){
     let email = req.body.email, pswd = req.body.pswd;
-    let temps = new tempStudent({
+    // let temps = new tempStudent({
+    //     sroll: req.body.sroll,
+    //     sname: req.body.sname,
+    //     sbranch: req.body.sbranch,
+    //     sdegree: req.body.sdegree,
+    //     email: email
+    // });
+    let s = new Student({
         sroll: req.body.sroll,
         sname: req.body.sname,
         sbranch: req.body.sbranch,
         sdegree: req.body.sdegree,
         email: email
     });
-    let user = new User({
-        email: email,
-        pw: pswd
+    Student.find({email:email}, function(err, record){
+        if(!err){
+            if(record.length === 0){
+                s.save();
+            }
+        }
     });
+    res.redirect("/home");
+    // let user = new User({
+    //     email: email,
+    //     pw: pswd
+    // });
 
     // email verification function 
-    evf(user, email, res, temps);
+    // evf(user, email, res, temps);
  
 });
 
-app.post("/login", function(req, res){
-    let email = req.body.email, pswd = req.body.pswd;
-    User.find({email: email}, function(err, record){
-        if(!err){
-            bcrypt.compare(pswd, record[0].pw, function(err, result) {
-                if(result){
-                    res.redirect("/home");
-                }else{
-                    res.redirect("/login");
-                }
-            });
+// app.post("/login", function(req, res){
+//     let email = req.body.email, pswd = req.body.pswd;
+//     User.find({email: email}, function(err, record){
+//         if(!err){
+//             bcrypt.compare(pswd, record[0].pw, function(err, result) {
+//                 if(result){
+//                     res.redirect("/home");
+//                 }else{
+//                     res.redirect("/login");
+//                 }
+//             });
         
-        }else{
-        }
-    })
-});
+//         }else{
+//         }
+//     })
+// });
 
 
 
@@ -236,6 +254,7 @@ app.get("/offer", function(req, res){
 });
 
 
+/*
 // user accesses the link that is sent to user
 app.get("/verify-email/:URL", function(req, res) {
     var url = req.params.URL;
@@ -333,7 +352,7 @@ const rve = function(email){
     });
 
 }
-
+*/
 
 
 
