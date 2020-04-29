@@ -171,6 +171,7 @@ app.get("/home", function(res,res){
             res.render("home",{students:studentRecords});
             // res.redirect("");
         }else{
+            res.status(404).send("INTERNAL ERROR!");
             console.log("No data present!");
         }
     });
@@ -178,11 +179,13 @@ app.get("/home", function(res,res){
 
 
 app.get("/", function(req, res){
-    res.sendFile(__dirname + '/public/student_signup.html');
+    // res.sendFile(__dirname + '/public/student_signup.html');
+    res.render("student_signup");
 });
 
 app.get("/login", function(req, res){
-    res.sendFile(__dirname + '/public/student_signin.html');
+    // res.sendFile(__dirname + '/public/student_signin.html');
+    res.render("student_signin");
 });
 
 app.post("/",function(req, res){
@@ -217,6 +220,8 @@ app.post("/login", function(req, res){
             });
         
         }else{
+            console.log("login failed");
+            res.status(404).send("INTERNAL ERROR!");
         }
     })
 });
@@ -261,7 +266,8 @@ app.get("/verify-email/:URL", function(req, res) {
                 }
             });
 
-            res.sendFile(__dirname + '/public/signin_response.html');
+            // res.sendFile(__dirname + '/public/signin_response.html');
+            res.render("signin_response");
 
             // not neccessary for user
             nev.sendConfirmationEmail(user.email, function(err, info) {
