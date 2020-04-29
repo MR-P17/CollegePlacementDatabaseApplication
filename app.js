@@ -8,13 +8,13 @@ const port = process.env.PORT;
 const saltround = 8;
 
 
-mongoose.connect("mongodb://localhost:27017/unipl", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect("mongodb://localhost:27017/unipl_test", {useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.set('useCreateIndex', true)
 
 // CONNECTION EVENTS
 // When successfully connected
 mongoose.connection.on('connected', function () {  
-    console.log('Mongoose default connection open to ' + 'mongodb://127.0.0.1:27017/unipl');
+    console.log('Mongoose default connection open to ' + 'mongodb://127.0.0.1:27017/unipl_test');
   }); 
   
   // If the connection throws an error
@@ -41,7 +41,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(express.static('public'));
 
-const studentSchema = {
+const studentSchema = new mongoose.Schema({
     sroll:{
         type:String,
         required:true
@@ -63,7 +63,57 @@ const studentSchema = {
         required:true,
         unique:true
     }
-};
+});
+
+const companySchema = new mongoose.Schema({
+    cname : {
+        type: String,
+        unique: true,
+        required: true
+    },
+    clocation: {
+        type: String,
+        required: true
+    }
+});
+
+const interviewSchema = new mongoose.Schema({
+    cname : {
+        type: String,
+        required: true
+    },
+    sroll: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    idate: {
+        type: Date,
+        required: true
+    }
+});
+
+const offer = new mongoose.Schema({
+    cname : {
+        type: String,
+        required: true
+    },
+    sroll: {
+        type: String,
+        required: true
+    },
+    email: {
+        type: String,
+        required: true
+    },
+    jdate: {
+        type: Date,
+        required: true
+    }
+});
 
 const Student = mongoose.model("Student", studentSchema);
 // main logic starts here
@@ -87,24 +137,30 @@ app.get("/", function(req, res){
 });
 
 app.post("/",function(req, res){
-    let email = req.body.email, pswd = req.body.pswd;
     let s = new Student({
         sroll: req.body.sroll,
         sname: req.body.sname,
         sbranch: req.body.sbranch,
         sdegree: req.body.sdegree,
-        email: email
+        email: req.body.email
     });
-    Student.find({email:email}, function(err, record){
-        if(!err){
-            if(record.length === 0){
-                s.save();
+
+    var email = req.body.email;
+    if(email.includes("@iitbbs.ac.in", 0)){
+        Student.find({email:req.body.email}, function(err, record){
+            if(!err){
+                if(record.length === 0){
+                    s.save();
+                }
             }
-        }
-    });
-    setTimeout(function(){
-        res.redirect("/home");
-    }, 1500);
+        });
+        setTimeout(function(){
+            res.redirect("/home");
+        }, 1500);
+    }else{
+        res.redirect("/");
+    }
+    
  
 });
 
@@ -119,6 +175,11 @@ app.get("/interview", function(req, res){
 app.get("/offer", function(req, res){
     res.render('offer');
 });
+
+app.get("/branch/:b_name", function(req, res){
+    var branchName = req.params.b_name;
+    res.send("<p>No Data found!</p>");
+})
 
 
 
