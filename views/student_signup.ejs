@@ -1,0 +1,128 @@
+
+<%- include('partials/header1'); -%>
+
+<body>
+    <div class="heading">
+        <p class="head-text">SIGN UP</p>
+    </div>
+
+<!-- </body>
+</html> -->
+<form action="/" method="POST" class="needs-validation" novalidate>
+
+    <div class="form-group row">
+      <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10 mb-3 md-form">
+        <input type="text" class="form-control div-size" name='sname' id="inputName3" required pattern="^[A-Za-z]+[\s]+[A-Za-z]+[\s]*[A-Za-z]*$" min="4" max="20">
+
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          name should contains only letters
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="form-group row">
+      <label for="inputRoll3" class="col-sm-2 col-form-label">Roll Number</label>
+      <div class="col-sm-10 mb-3 md-form">
+        <input type="text" class="form-control div-size" name='sroll' id="inputRoll3" placeholder="e.g. 17CS01067" required pattern="^[0-9A-Za-z]+$" min="7" max="10">
+
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          please provide valid roll Number!
+        </div>
+      </div>
+      </div>
+
+
+    <div class="form-group row">
+      <label for="inputRoll31" class="col-sm-2 col-form-label">Email-id</label>
+      <div class="col-sm-10 mb-3 md-form" style="display: inline-block;">
+        <input type="email" class="form-control div-size" name='email' id="inputRoll31" placeholder="e.g xyz@iitbbs.ac.in" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          please provide valid email-id!
+        </div>
+      </div>
+
+    </div>
+
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Branch</legend>
+        <div class="col-sm-10">
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios1" value="CSE" checked>
+            <label class="form-check-label" for="gridRadios1">
+              CSE
+            </label>
+          </div>
+
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios2" value="EE">
+            <label class="form-check-label" for="gridRadios2">
+              EE
+            </label>
+          </div>
+
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios3" value="ECE">
+            <label class="form-check-label" for="gridRadios3">
+              ECE
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+    </fieldset>
+
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Degree</legend>
+          <div class="col-sm-10">
+            <div class="form-check f1">
+              <input class="form-check-input" type="radio" name="sdegree" id="gridRadios11" value="B.tech" checked>
+              <label class="form-check-label" for="gridRadios11">
+                B.tech
+              </label>
+            </div>
+  
+            <div class="form-check f1">
+              <input class="form-check-input" type="radio" name="sdegree" id="gridRadios21" value="M.tech">
+              <label class="form-check-label" for="gridRadios21">
+                M.tech
+              </label>
+            </div>
+  
+          </div>
+        </div>
+  
+      </fieldset>
+
+      <br>
+      
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" name="bt" value="signup">Sign Up</button>
+      </div>
+    </div>
+</form>
+
+<!-- <form action="/login" method="POST"> -->
+  <div class="format">
+    <a href="/login" class="btn btn-primary" style="margin-right: 8em;" style="color: white;" name="bt" value="login">Log In</a>
+  </div>
+<!-- </form> -->
+
+
+
+<%- include('partials/footer1'); -%>
