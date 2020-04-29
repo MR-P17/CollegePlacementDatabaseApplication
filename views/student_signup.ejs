@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles1.css">
+    
+</head>
+
+<body>
+    <div class="heading">
+        <p class="head-text">SIGN UP</p>
+    </div>
+
+<!-- </body>
+</html> -->
+<form action="/" method="POST" class="needs-validation" novalidate>
+
+    <div class="form-group row">
+      <label for="inputName3" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-10 mb-3 md-form">
+        <input type="text" class="form-control div-size" name='sname' id="inputName3" required pattern="^[A-Za-z]+[\s]+[A-Za-z]+[\s]*[A-Za-z]*$" min="4" max="20">
+
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          name should contains only letters
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="form-group row">
+      <label for="inputRoll3" class="col-sm-2 col-form-label">Roll Number</label>
+      <div class="col-sm-10 mb-3 md-form">
+        <input type="text" class="form-control div-size" name='sroll' id="inputRoll3" placeholder="e.g. 17CS01067" required pattern="^[0-9A-Za-z]+$" min="7" max="10">
+
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          please provide valid roll Number!
+        </div>
+      </div>
+      </div>
+
+
+    <div class="form-group row">
+      <label for="inputRoll31" class="col-sm-2 col-form-label">Email-id</label>
+      <div class="col-sm-10 mb-3 md-form" style="display: inline-block;">
+        <input type="email" class="form-control div-size" name='email' id="inputRoll31" placeholder="e.g xyz@iitbbs.ac.in" required>
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          please provide valid email-id!
+        </div>
+      </div>
+
+      <label for="pswd" class="col-sm-2 col-form-label">Password</label>
+      <div class="col-sm-10 mb-3 md-form" style="display: inline-block;">
+        <input type="password" class="form-control div-size" name='pswd' id="pswd" placeholder="e.g. Sneha@1234" required pattern="^[A-Z][A-Za-z0-9]+@*[A-Za-z0-9]+$" min="8" max="15">
+        
+        <div class="valid-feedback">
+          Looks good!
+        </div>
+        <div class="invalid-feedback">
+          ist letter should be capital, rest small/capital letter and only @. minLen = 8, maxLen = 15
+        </div>
+      </div>
+
+    </div>
+
+    <fieldset class="form-group">
+      <div class="row">
+        <legend class="col-form-label col-sm-2 pt-0">Branch</legend>
+        <div class="col-sm-10">
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios1" value="CSE" checked>
+            <label class="form-check-label" for="gridRadios1">
+              CSE
+            </label>
+          </div>
+
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios2" value="EE">
+            <label class="form-check-label" for="gridRadios2">
+              EE
+            </label>
+          </div>
+
+          <div class="form-check f1">
+            <input class="form-check-input" type="radio" name="sbranch" id="gridRadios3" value="ECE">
+            <label class="form-check-label" for="gridRadios3">
+              ECE
+            </label>
+          </div>
+
+        </div>
+      </div>
+
+    </fieldset>
+
+    <fieldset class="form-group">
+        <div class="row">
+          <legend class="col-form-label col-sm-2 pt-0">Degree</legend>
+          <div class="col-sm-10">
+            <div class="form-check f1">
+              <input class="form-check-input" type="radio" name="sdegree" id="gridRadios11" value="B.tech" checked>
+              <label class="form-check-label" for="gridRadios11">
+                B.tech
+              </label>
+            </div>
+  
+            <div class="form-check f1">
+              <input class="form-check-input" type="radio" name="sdegree" id="gridRadios21" value="M.tech">
+              <label class="form-check-label" for="gridRadios21">
+                M.tech
+              </label>
+            </div>
+  
+          </div>
+        </div>
+  
+      </fieldset>
+
+      <br>
+      
+    <div class="form-group row">
+      <div class="col-sm-10">
+        <button type="submit" class="btn btn-primary" name="bt" value="signup">Sign Up</button>
+      </div>
+    </div>
+</form>
+
+<!-- <form action="/login" method="POST"> -->
+  <div class="format">
+    <a href="/login" class="btn btn-primary" style="margin-right: 8em;" style="color: white;" name="bt" value="login">Log In</a>
+  </div>
+<!-- </form> -->
+
+
+
+<script src="index.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
