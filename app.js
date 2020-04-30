@@ -68,7 +68,7 @@ const studentSchema = {
 };
 
 const Student = mongoose.model("Student", studentSchema), tempStudent = mongoose.model("tempStudent", studentSchema);
-const User = require('./user/userModel');
+const User = require('./user/userModel'), tempUser = require('./user/tempUserModel');
 
 /*
 // sync version of hashing function
@@ -135,7 +135,7 @@ nev.configure({
 
     /* mongo-stuff */
     persistentUserModel: User,
-    // tempUserModel: null,
+    tempUserModel: tempUser,
     // tempUserCollection: 'temporary_users',
     emailFieldName: 'email',
     passwordFieldName: 'password',
@@ -153,14 +153,15 @@ nev.configure({
 });
 
 
-nev.generateTempUserModel(User, function(err, tempUserModel) {
-    if (err) {
-        console.log(err);
-        return;
-    }
+/* creating temporary user model using built in function */
+// nev.generateTempUserModel(User, function(err, tempUserModel) {
+//     if (err) {
+//         console.log(err);
+//         return;
+//     }
 
-    console.log('generated temp user model: ' + (typeof tempUserModel === 'function'));
-});
+//     console.log('generated temp user model: ' + (typeof tempUserModel === 'function'));
+// });
 
 
 // main logic starts here
@@ -306,6 +307,13 @@ const evf = function(newUser, email, res, temps){
             temps.save();
             nev.sendVerificationEmail(email, URL, function(err, info) {
                 if (err) {
+                    tempUserModel.deleteOne({email:email}, function(err){
+                        if(err){ console.log("error while deleting user from temporary location"); }
+                    });
+                    tempStudent.deleteOne({email:email}, function(err){
+                        if(err){ console.log("error while deleting user from temporary location"); }
+                    });
+                    
                     console.log("ERROR: sending verification email FAILED");
                     return res.status(404).send('Email can not sent, Internal Error!');
                 }
