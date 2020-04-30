@@ -14,7 +14,7 @@ For using the repo follow below steps:
 
 
 routes available:
-# admin part
+# admin part.
 Not accessible to all
 
 # student part
